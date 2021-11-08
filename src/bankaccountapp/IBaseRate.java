@@ -11,7 +11,6 @@ package bankaccountapp;
  */
 public interface IBaseRate {
     default double getBaseRate() {
-            System.out.println("bankaccountapp.IBaseRate.getBaseRate()");
             return 2.5;
 	}
     

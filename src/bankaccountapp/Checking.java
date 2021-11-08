@@ -18,7 +18,6 @@ public class Checking extends Account{
 	
 	@Override
 	public void setRate(){
-            System.out.println("Implement rate for Checking");
             rate = getBaseRate() * .15;
 	}
 	

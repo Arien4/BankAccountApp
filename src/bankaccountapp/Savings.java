@@ -33,11 +33,11 @@ public class Savings extends Account {
 				+ "\n  Safety Deposit Box Key: " + safetyDepositBoxKey);
 	}
 
-	@Override
+	/*@Override
 	public double getBaseRate() {
 		// TODO Auto-generated method stub
 		return 0;
-	}
+	}*/
 
 	
 	

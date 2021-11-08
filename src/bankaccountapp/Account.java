@@ -2,12 +2,13 @@ package bankaccountapp;
 
 public abstract class Account implements IBaseRate{
 	//List common properties for savings and checking accounts
-	String name;
-	String sSN;
+	private String name;
+	private String sSN;
+        private double balance;
+        
 	static int index = 10000;
-	String accountNumber;
-	double balance;
-	double rate;
+	protected String accountNumber;
+	protected double rate;
 	
 	
 	//Constructor to set base properties and initialize the account
@@ -20,8 +21,9 @@ public abstract class Account implements IBaseRate{
 		//Set account number
 		index++;
 		this.accountNumber = setAccountNumber();
-		//setRate();
-	}
+                
+                setRate();
+        }
 			
 	public abstract void setRate(); 
 	
@@ -33,14 +35,44 @@ public abstract class Account implements IBaseRate{
 		return lastTwoOfSSN + uniqueID + randomNumber;
 	
 	}
+        
+        public void compound() {
+            double accruedInterest = balance * (rate/100);
+            balance += accruedInterest;
+            System.out.println("Accrued Interest: $" + accruedInterest);
+            printBalance();
+        }
 	
-	//List common methods
-		public void showInfo(){
-			System.out.println("NAME: " + name +
-					"\nACCOUNT NUBER: " + accountNumber +
-					"\nBALANCE: " + balance +
-					"\nRATE: " + rate +"%"
-					);
-		}
-	
+	//List common methods - transactions
+        
+        public void deposit(double amount) {
+            balance += amount;
+            System.out.println("Depositing $" + amount);
+            printBalance();
+        }
+        
+        public void withdraw(double amount) {
+            balance -= amount;
+            System.out.println("Withdrawing $" + amount);
+            printBalance();
+        }
+        
+        public void transfer(String toWhere, double amount) {
+            balance -= amount;
+            System.out.println("Transferring $" + amount + " to " + toWhere);
+            printBalance();
+        }
+        
+        public void printBalance() {
+            System.out.println("Your balance is: $" + balance);
+        }
+        
+        public void showInfo(){
+                System.out.println("NAME: " + name +
+                                "\nACCOUNT NUBER: " + accountNumber +
+                                "\nBALANCE: " + balance +
+                                "\nRATE: " + rate +"%"
+                                );
+        }
+
 }
